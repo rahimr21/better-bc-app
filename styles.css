@@ -244,21 +244,59 @@ body.eagle-agora .banner .btn-link {
   text-decoration: none;
 }
 
-/* Modernize header area */
+/* Modernize header area — maroon background, merged with My Services */
 body.eagle-agora .services-header {
   font-family: var(--eagle-font-display) !important;
   font-weight: 700 !important;
+  font-size: var(--eagle-text-xl) !important;
   letter-spacing: -0.02em;
+  color: #fff !important;
+}
+
+body.eagle-agora .services-header .bc-color {
+  color: var(--eagle-accent) !important;
 }
 
 body.eagle-agora .header {
-  background: #fff !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+  background: var(--eagle-primary) !important;
+  border: none !important;
+  border-bottom: none !important;
   box-shadow: none !important;
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+}
+
+/* Header nav links (Search, My Favorites) — white on maroon */
+body.eagle-agora .header .support-item button,
+body.eagle-agora .header .support-item a {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 500 !important;
+}
+
+body.eagle-agora .header .support-item button:hover,
+body.eagle-agora .header .support-item a:hover {
+  color: #fff !important;
+}
+
+body.eagle-agora .header .support-item a i,
+body.eagle-agora .header .support-item button i {
+  color: inherit !important;
+}
+
+body.eagle-agora .header .navbar-toggle .icon-bar {
+  background: rgba(255, 255, 255, 0.9) !important;
+}
+
+body.eagle-agora .header .navbar-toggle i.fa-bars {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+body.eagle-agora #nav {
+  background: var(--eagle-primary) !important;
 }
 
 body.eagle-agora #nav.affix {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 /* Page description / title area */
@@ -328,12 +366,12 @@ body.eagle-agora #all-services .panel-body ul {
 body.eagle-agora #all-services .panel-body .category-subheading {
   display: block;
   font-family: var(--eagle-font) !important;
-  font-size: var(--eagle-text-xs) !important;
+  font-size: var(--eagle-text-sm) !important;
   font-weight: 600 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.05em !important;
-  color: var(--eagle-text-muted) !important;
-  padding: 8px 8px 4px !important;
+  color: var(--eagle-primary) !important;
+  padding: 10px 10px 6px !important;
 }
 
 /* Nested sub-category list */
@@ -358,18 +396,18 @@ body.eagle-agora #all-services .panel-body li.disabled {
   opacity: 0.45;
 }
 
-/* Service links */
+/* Service links — larger, medium weight for readability */
 body.eagle-agora #all-services .panel-body li a {
   display: block;
-  padding: 8px 10px !important;
+  padding: 10px 12px !important;
   font-family: var(--eagle-font) !important;
-  font-size: var(--eagle-text-sm) !important;
-  font-weight: 400;
+  font-size: var(--eagle-text-base) !important;
+  font-weight: 500 !important;
   color: var(--eagle-text) !important;
   text-decoration: none !important;
   border-radius: var(--eagle-radius-sm);
   transition: color 0.15s ease;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 body.eagle-agora #all-services .panel-body li a:hover,
@@ -1080,14 +1118,15 @@ body.eagle-login #emergency #text {
   --eagle-shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
-/* --- Agora: Fix page-description header (the maroon bar with square edges) --- */
+/* --- Agora: Fix page-description header (maroon bar, merges with header above) --- */
 body.eagle-agora .page-description {
   background: var(--eagle-primary) !important;
   color: #fff !important;
-  padding: 28px 24px 20px !important;
+  padding: 20px 24px 24px !important;
   margin: 0 -15px 24px !important;
   border-radius: 0 0 var(--eagle-radius-lg) var(--eagle-radius-lg) !important;
   box-shadow: 0 4px 16px rgba(138, 36, 50, 0.12);
+  border-top: none !important;
 }
 
 body.eagle-agora .page-description h1 {
@@ -1113,12 +1152,15 @@ body.eagle-agora #all-services .panel.panel-default:hover {
   box-shadow: var(--eagle-shadow-lg) !important;
 }
 
-/* --- Agora: Panel heading — add subtle bg tint so header "pops" from body --- */
+/* --- Agora: Panel heading — larger, bolder, uppercase for readability --- */
 body.eagle-agora #all-services .panel-heading {
   background: var(--eagle-bg) !important;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
   color: var(--eagle-primary) !important;
-  font-size: 15px !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.03em !important;
 }
 
 /* --- Agora: Better grid gap and section padding --- */
