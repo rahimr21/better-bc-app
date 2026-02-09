@@ -1,10 +1,17 @@
 /* ========================================
    BC EagleGlass — Sidebar Injection
    Phase 2.1: Collapsible sidebar overlay
+   Phase 6: Dark mode with persistent theme
    ======================================== */
 
 (function () {
   'use strict';
+
+  /* ------ Theme: Block paint until theme applied (prevents flicker) ------ */
+  const blockEl = document.createElement('style');
+  blockEl.id = 'eagle-theme-block';
+  blockEl.textContent = 'html{visibility:hidden !important}';
+  document.documentElement.appendChild(blockEl);
 
   /* ------ Constants ------ */
   const SIDEBAR_ID = 'eagle-sidebar';
@@ -144,16 +151,23 @@
 
     const themeBtn = document.createElement('button');
     themeBtn.className = 'eagle-sidebar__link eagle-sidebar__theme-btn';
-    themeBtn.title = 'Toggle theme (coming soon)';
+    themeBtn.title = 'Toggle dark mode';
     themeBtn.type = 'button';
 
     const themeIcon = document.createElement('span');
     themeIcon.className = 'material-icons-round eagle-sidebar__icon';
-    themeIcon.textContent = 'dark_mode';
+    themeIcon.textContent = document.documentElement.classList.contains('eagle-dark') ? 'light_mode' : 'dark_mode';
 
     const themeLabel = document.createElement('span');
     themeLabel.className = 'eagle-sidebar__label';
     themeLabel.textContent = 'Theme';
+
+    themeBtn.addEventListener('click', function () {
+      const isDark = document.documentElement.classList.toggle('eagle-dark');
+      const nextTheme = isDark ? 'dark' : 'light';
+      chrome.storage.local.set({ eagleTheme: nextTheme });
+      themeIcon.textContent = isDark ? 'light_mode' : 'dark_mode';
+    });
 
     themeBtn.appendChild(themeIcon);
     themeBtn.appendChild(themeLabel);
@@ -169,17 +183,27 @@
 
   /* ------ Init ------ */
 
-  function init() {
+  function doInit() {
     ensureIconFont();
     ensureInterFont();
     buildSidebar();
     addPageScopeClass();
   }
 
-  // run_at is document_start, so wait for body to exist
-  if (document.body) {
-    init();
-  } else {
-    document.addEventListener('DOMContentLoaded', init);
+  function runInit() {
+    if (document.body) {
+      doInit();
+    } else {
+      document.addEventListener('DOMContentLoaded', doInit);
+    }
   }
+
+  chrome.storage.local.get(['eagleTheme'], function (r) {
+    const theme = r.eagleTheme || 'light';
+    if (theme === 'dark') {
+      document.documentElement.classList.add('eagle-dark');
+    }
+    blockEl.remove();
+    runInit();
+  });
 })();

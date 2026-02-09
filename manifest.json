@@ -4,7 +4,7 @@
   "description": "Modernize Boston College Agora, EagleApps, and login portals with a SaaS-inspired UI.",
   "version": "0.1.0",
   "icons": {},
-  "permissions": [],
+  "permissions": ["storage"],
   "host_permissions": [
     "https://services.bc.edu/*",
     "https://*.services.bc.edu/*",
@@ -15,28 +15,19 @@
   ],
   "content_scripts": [
     {
-      "matches": [
-        "https://eaen.bc.edu/*",
-        "https://*.eaen.bc.edu/*"
-      ],
+      "matches": ["https://eaen.bc.edu/*", "https://*.eaen.bc.edu/*"],
       "js": ["sidebar.js", "eaen-tables.js"],
       "css": ["styles.css"],
       "run_at": "document_start"
     },
     {
-      "matches": [
-        "https://login.bc.edu/*",
-        "https://*.login.bc.edu/*"
-      ],
+      "matches": ["https://login.bc.edu/*", "https://*.login.bc.edu/*"],
       "js": ["sidebar.js"],
       "css": ["styles.css"],
       "run_at": "document_start"
     },
     {
-      "matches": [
-        "https://services.bc.edu/*",
-        "https://*.services.bc.edu/*"
-      ],
+      "matches": ["https://services.bc.edu/*", "https://*.services.bc.edu/*"],
       "js": ["sidebar.js"],
       "css": ["styles.css"],
       "run_at": "document_start"

@@ -41,6 +41,23 @@ Always use these variables instead of hardcoded values:
 | `--eagle-sidebar-width-expanded` | `240px` | Sidebar expanded |
 | `--eagle-z-sidebar` | `9990` | Must stay below BC emergency banner (z-index 9999999) |
 
+### Dark Mode (Phase 6)
+
+When `html.eagle-dark` is present, design tokens are overridden for dark mode. New components using these variables get dark mode automatically.
+
+| Token | Dark value | Notes |
+|-------|------------|-------|
+| `--eagle-bg` | `#1a1c20` | Page background |
+| `--eagle-card` | `#242628` | Cards, panels |
+| `--eagle-text` | `#e4e6eb` | Body text |
+| `--eagle-text-muted` | `#9ca3af` | Secondary text |
+| `--eagle-primary` | `#c95a6a` | Lighter maroon for visibility |
+| `--eagle-primary-light` | `rgba(138,36,50,0.25)` | Hover bg |
+| `--eagle-accent` | `#d4b896` | Gold, lighter |
+| `--eagle-shadow` etc. | Darker shadows | Cards on dark bg |
+
+**Rule:** Use design tokens; avoid hardcoded `#fff` or `rgba(0,0,0,...)` so dark mode applies automatically. For elements that must override, add `html.eagle-dark` selectors.
+
 ---
 
 ## 3. Domain Scoping (Body Classes)
@@ -219,4 +236,5 @@ All sidebar classes use `eagle-sidebar` or `eagle-sidebar__*`. The reset `.eagle
 4. Use `overflow: hidden` where rounded corners might clip.
 5. Add light borders and appropriate shadows for depth.
 6. Do not break `#all-services` jQuery click behavior.
-7. Update `progress.txt` when the work is complete.
+7. Avoid hardcoded `#fff` or `rgba(0,0,0,...)` — use tokens so dark mode applies.
+8. Update `progress.txt` when the work is complete.
