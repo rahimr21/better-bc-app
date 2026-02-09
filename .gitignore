@@ -1,0 +1,32 @@
+# Context & design references (local dev only, don't push)
+context/
+stitch/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Node (if you add tooling later)
+node_modules/
+
+# Build / dist
+dist/
+*.crx
+*.pem
+*.zip
+
+# Env / secrets
+.env
+.env.local
+*.pem
+
+# Logs
+*.log
+npm-debug.log*

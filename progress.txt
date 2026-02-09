@@ -1,0 +1,58 @@
+========================================
+  BC EagleGlass - Progress Tracker
+========================================
+
+[PHASE 1.3] [COMPLETE] - Created progress.txt tracker.
+[PHASE 1.1] [COMPLETE] - Initialize manifest.json (V3) and permissions.
+[PHASE 1.2] [COMPLETE] - Define CSS variables in styles.css.
+[PHASE 2.1] [COMPLETE] - Implement Sidebar injection script (sidebar.js).
+[PHASE 2.2] [COMPLETE] - Style Sidebar with modern icons and hover states.
+[CONTEXT] [COMPLETE]   - Aligned code with real BC portal HTML (login, services, eaen).
+
+========================================
+  Session Log
+========================================
+
+[2026-02-08] Session started. Created progress.txt.
+[2026-02-08] Phase 1.3 complete — progress.txt created.
+[2026-02-08] Phase 1.1 complete — manifest.json (MV3) with host_permissions for services.bc.edu, eaen.bc.edu, login.bc.edu.
+[2026-02-08] Phase 1.2 complete — styles.css with :root CSS variables (colors, typography, spacing, sidebar tokens).
+[2026-02-08] Phase 2.1 complete — sidebar.js: collapsible sidebar injection with nav items, icon font loading, DOMContentLoaded guard.
+[2026-02-08] Phase 2.2 complete — Sidebar CSS: fixed position, hover-expand, gold active state, label fade transitions.
+[2026-02-08] Phase 1 & Phase 2 fully complete.
+[2026-02-08] Context alignment — reviewed real BC portal HTML pages from context/.
+[2026-02-08]   styles.css: Added body.eagle-has-sidebar rule (CSS-driven body push, no inline styles).
+[2026-02-08]   sidebar.js: Replaced direct body.style.marginLeft with classList.add('eagle-has-sidebar').
+[2026-02-08]   PRD.md: Added real DOM selectors for Phase 3 (#all-services, .panel) and Phase 4 (.ui-view-container, table.ng-table).
+[2026-02-08]   Manifest verified — domain patterns correct for login.bc.edu, services.bc.edu, eaen.bc.edu.
+[2026-02-08]   Z-index verified — sidebar (9990) safely below emergency banner (9999999).
+
+[2026-02-09] Session started. Beginning Phase 3 & Phase 4 implementation.
+[SIDEBAR]   [COMPLETE] - Updated sidebar NAV_ITEMS with real portal launcher routes (myservices.do, eaPlanningRegistration, CurrentCoursesEA, wwep).
+[SIDEBAR]   [COMPLETE] - Improved getActiveIndex() to detect eaen sub-pages and services launcher query params.
+[SIDEBAR]   [COMPLETE] - Added addPageScopeClass() — injects eagle-agora / eagle-eaen body classes for CSS scoping.
+[PHASE 3.1] [COMPLETE] - Transform "My Services" panels into modern cards (rounded corners, shadow, modern typography, hover states).
+[PHASE 3.2] [COMPLETE] - Implement responsive CSS Grid layout for #all-services portal dashboard.
+[PHASE 3]   [COMPLETE] - Global Agora modernization: banner, header, page title, footer, search bar, dropdown, form controls.
+[PHASE 4.1] [COMPLETE] - Implement MutationObserver (eaen-tables.js) for async Angular-rendered tables; marks tables with .eagle-table class.
+[PHASE 4.2] [COMPLETE] - Apply modern "Data Table" styles: rounded corners, shadow, modern headers, hover rows, striped rows.
+[PHASE 4]   [COMPLETE] - EagleApps global modernization: navbar, buttons, form controls, facet search panels, filter chips, tabs, popovers, wells, alerts.
+[MANIFEST]  [COMPLETE] - Split eaen and login content_scripts; registered eaen-tables.js for eaen.bc.edu only.
+
+[2026-02-09]   sidebar.js: NAV_ITEMS now deep-link to real Agora launcher endpoints instead of generic domain roots.
+[2026-02-09]   sidebar.js: Added eagle-agora/eagle-eaen body classes for CSS scoping per domain.
+[2026-02-09]   styles.css: Added ~300 lines of Phase 3 CSS (Agora card redesign + responsive grid + global modernization).
+[2026-02-09]   styles.css: Added ~250 lines of Phase 4 CSS (EagleApps table styling + form controls + facet search + tabs).
+[2026-02-09]   eaen-tables.js: New content script — MutationObserver on .ui-view-container for Angular table discovery.
+[2026-02-09]   manifest.json: Split eaen/login entries; eaen-tables.js injected on eaen.bc.edu pages only.
+[2026-02-09] Phase 3 & Phase 4 fully complete.
+
+[2026-02-09] Session continued. Beginning Phase 5: Login page modernization + visual polish.
+[PHASE 5.1] [COMPLETE] - Login page modernization (login.bc.edu): centered card layout, modern inputs, styled button, alert cleanup.
+[PHASE 5.2] [COMPLETE] - Visual polish: fixed square edges, enhanced card shadows/pop, refined page-description header, sidebar active state.
+[SIDEBAR]   [COMPLETE] - Added eagle-login body class detection for login.bc.edu scoping.
+
+[2026-02-09]   sidebar.js: addPageScopeClass() now adds eagle-login on login.bc.edu.
+[2026-02-09]   styles.css: Added ~200 lines of Login page CSS (body.eagle-login): centered flex layout, card container, input/button/alert modernization.
+[2026-02-09]   styles.css: Added ~100 lines of Visual polish: --eagle-shadow-md/lg tokens, page-description maroon-to-rounded header, enhanced card borders, stronger sidebar active gold, input-group rounding.
+[2026-02-09] Phase 5 fully complete.

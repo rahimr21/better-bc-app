@@ -1,0 +1,1216 @@
+/* ========================================
+   BC EagleGlass — Design Tokens & Base
+   ======================================== */
+
+/* --- Color Tokens --- */
+:root {
+  /* Primary palette (PRD canonical values) */
+  --eagle-primary: #8A2432;
+  --eagle-primary-hover: #a02a3c;
+  --eagle-primary-light: rgba(138, 36, 50, 0.08);
+  --eagle-accent: #BC9B6A;
+  --eagle-accent-hover: #c9ad80;
+  --eagle-accent-light: rgba(188, 155, 106, 0.12);
+
+  /* Backgrounds */
+  --eagle-bg: #F4F5F7;
+  --eagle-bg-dark: #0F1115;
+  --eagle-card: #FDFDFD;
+  --eagle-card-dark: #1A1C1E;
+
+  /* Text */
+  --eagle-text: #212529;
+  --eagle-text-muted: #6C757D;
+
+  /* Semantic */
+  --eagle-success: #28A745;
+
+  /* --- Typography --- */
+  --eagle-font: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --eagle-font-display: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --eagle-text-xs: 10px;
+  --eagle-text-sm: 14px;
+  --eagle-text-base: 16px;
+  --eagle-text-lg: 18px;
+  --eagle-text-xl: 24px;
+  --eagle-text-2xl: 32px;
+  --eagle-leading: 1.6;
+  --eagle-leading-tight: 1.1;
+
+  /* --- Spacing & Elevation --- */
+  --eagle-radius: 12px;
+  --eagle-radius-sm: 8px;
+  --eagle-radius-lg: 16px;
+  --eagle-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+
+  /* --- Sidebar --- */
+  --eagle-sidebar-width-collapsed: 64px;
+  --eagle-sidebar-width-expanded: 240px;
+  --eagle-sidebar-transition: width 0.3s ease-in-out;
+
+  /* --- Z-index layers --- */
+  --eagle-z-sidebar: 9990;
+  --eagle-z-header: 9980;
+}
+
+/* --- Minimal Base Reset (scoped to extension elements) --- */
+.eagle-ext,
+.eagle-ext *,
+.eagle-ext *::before,
+.eagle-ext *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.eagle-ext {
+  font-family: var(--eagle-font);
+  font-size: var(--eagle-text-base);
+  line-height: var(--eagle-leading);
+  color: var(--eagle-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========================================
+   Sidebar — Phase 2.2
+   ======================================== */
+
+/* --- Sidebar Container --- */
+.eagle-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: var(--eagle-sidebar-width-collapsed);
+  background: var(--eagle-primary);
+  color: #fff;
+  z-index: var(--eagle-z-sidebar);
+  display: flex;
+  flex-direction: column;
+  transition: var(--eagle-sidebar-transition);
+  overflow: hidden;
+}
+
+.eagle-sidebar:hover {
+  width: var(--eagle-sidebar-width-expanded);
+}
+
+/* --- Header / Logo --- */
+.eagle-sidebar__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  flex-shrink: 0;
+}
+
+.eagle-sidebar__logo-icon {
+  font-size: 28px;
+  min-width: 32px;
+  text-align: center;
+  color: var(--eagle-accent);
+}
+
+.eagle-sidebar__logo-text {
+  font-family: var(--eagle-font-display);
+  font-size: var(--eagle-text-xl);
+  font-weight: 700;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.25s ease-in-out;
+}
+
+.eagle-sidebar:hover .eagle-sidebar__logo-text {
+  opacity: 1;
+}
+
+/* --- Navigation --- */
+.eagle-sidebar__nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 8px 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-top: 16px;
+}
+
+/* --- Nav Links (shared with footer button) --- */
+.eagle-sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--eagle-radius-sm);
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  font-size: var(--eagle-text-sm);
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
+
+.eagle-sidebar__link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+/* Active state — gold accent highlight */
+.eagle-sidebar__link--active {
+  background: var(--eagle-accent-light);
+  color: var(--eagle-accent);
+  border-left: 3px solid var(--eagle-accent);
+}
+
+.eagle-sidebar__link--active:hover {
+  background: var(--eagle-accent-light);
+  color: var(--eagle-accent);
+}
+
+/* --- Icons --- */
+.eagle-sidebar__icon {
+  font-size: 22px;
+  min-width: 32px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* --- Labels (hidden when collapsed) --- */
+.eagle-sidebar__label {
+  opacity: 0;
+  transition: opacity 0.25s ease-in-out;
+  overflow: hidden;
+}
+
+.eagle-sidebar:hover .eagle-sidebar__label {
+  opacity: 1;
+}
+
+/* --- Footer --- */
+.eagle-sidebar__footer {
+  padding: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.eagle-sidebar__theme-btn {
+  font-family: var(--eagle-font);
+}
+
+/* ========================================
+   Body Layout — Sidebar Push
+   ======================================== */
+
+/* Applied via JS: document.body.classList.add('eagle-has-sidebar') */
+body.eagle-has-sidebar {
+  margin-left: var(--eagle-sidebar-width-collapsed) !important;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+/* ========================================
+   Phase 3 — Agora Portal Redesign
+   (services.bc.edu / My Services)
+   ======================================== */
+
+/* --- 3.0 Global Page Modernization (scoped to eagle-agora) --- */
+body.eagle-agora {
+  background: var(--eagle-bg) !important;
+  font-family: var(--eagle-font) !important;
+  color: var(--eagle-text);
+}
+
+/* Modernize the top banner area */
+body.eagle-agora .banner.banner-inverse {
+  background: var(--eagle-primary) !important;
+  border: none !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+body.eagle-agora .banner .brand {
+  font-family: var(--eagle-font-display);
+}
+
+body.eagle-agora .banner .btn-link {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-family: var(--eagle-font);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+/* Modernize header area */
+body.eagle-agora .services-header {
+  font-family: var(--eagle-font-display) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em;
+}
+
+body.eagle-agora .header {
+  background: #fff !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+  box-shadow: none !important;
+}
+
+body.eagle-agora #nav.affix {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Page description / title area */
+body.eagle-agora .page-description {
+  padding: 32px 0 16px !important;
+}
+
+body.eagle-agora .page-description h1 {
+  font-family: var(--eagle-font-display) !important;
+  font-size: var(--eagle-text-2xl) !important;
+  font-weight: 700 !important;
+  color: var(--eagle-text) !important;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+body.eagle-agora .page-description p {
+  font-family: var(--eagle-font) !important;
+  font-size: var(--eagle-text-sm) !important;
+  color: var(--eagle-text-muted) !important;
+}
+
+/* --- 3.1 Service Panels → Modern Cards --- */
+
+/* Override Bootstrap .panel.panel-default → card look */
+body.eagle-agora #all-services .panel.panel-default {
+  background: var(--eagle-card) !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  border-radius: var(--eagle-radius) !important;
+  box-shadow: var(--eagle-shadow) !important;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  overflow: hidden;
+  margin-bottom: 0; /* grid gap handles spacing */
+}
+
+body.eagle-agora #all-services .panel.panel-default:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08) !important;
+  transform: translateY(-2px);
+}
+
+/* Panel heading → card header */
+body.eagle-agora #all-services .panel-heading {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+  border-radius: var(--eagle-radius) var(--eagle-radius) 0 0 !important;
+  padding: 16px 20px !important;
+  font-family: var(--eagle-font-display) !important;
+  font-size: var(--eagle-text-base) !important;
+  font-weight: 600 !important;
+  color: var(--eagle-primary) !important;
+  letter-spacing: -0.01em;
+}
+
+/* Panel body → card content */
+body.eagle-agora #all-services .panel-body {
+  padding: 8px 12px 12px !important;
+}
+
+/* Service link list — remove default ul/li styles */
+body.eagle-agora #all-services .panel-body ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Sub-category headings inside panels */
+body.eagle-agora #all-services .panel-body .category-subheading {
+  display: block;
+  font-family: var(--eagle-font) !important;
+  font-size: var(--eagle-text-xs) !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  color: var(--eagle-text-muted) !important;
+  padding: 8px 8px 4px !important;
+}
+
+/* Nested sub-category list */
+body.eagle-agora #all-services .panel-body .sub-category > ul {
+  padding-left: 0 !important;
+}
+
+/* Individual service link items */
+body.eagle-agora #all-services .panel-body li {
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: var(--eagle-radius-sm) !important;
+  transition: background-color 0.15s ease;
+}
+
+body.eagle-agora #all-services .panel-body li:not(.sub-category):not(.disabled):hover,
+body.eagle-agora #all-services .panel-body li.bkgrd-on {
+  background: var(--eagle-primary-light) !important;
+}
+
+body.eagle-agora #all-services .panel-body li.disabled {
+  opacity: 0.45;
+}
+
+/* Service links */
+body.eagle-agora #all-services .panel-body li a {
+  display: block;
+  padding: 8px 10px !important;
+  font-family: var(--eagle-font) !important;
+  font-size: var(--eagle-text-sm) !important;
+  font-weight: 400;
+  color: var(--eagle-text) !important;
+  text-decoration: none !important;
+  border-radius: var(--eagle-radius-sm);
+  transition: color 0.15s ease;
+  line-height: 1.4;
+}
+
+body.eagle-agora #all-services .panel-body li a:hover,
+body.eagle-agora #all-services .panel-body li a:focus {
+  color: var(--eagle-primary) !important;
+  text-decoration: underline !important;
+}
+
+/* Hide the external link icon styling (keep the <i> for a11y) */
+body.eagle-agora #all-services .panel-body li a i[aria-label] {
+  font-size: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+/* Add a subtle external-link indicator via CSS */
+body.eagle-agora #all-services .panel-body li a[target="_blank"]::after {
+  content: ' ↗';
+  font-size: 11px;
+  color: var(--eagle-text-muted);
+  vertical-align: super;
+}
+
+/* --- 3.2 Responsive Grid Layout --- */
+
+/* Override Bootstrap .col-md-4 float layout with CSS Grid */
+body.eagle-agora #all-services {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+  gap: 20px !important;
+  padding: 8px 0 32px !important;
+}
+
+/* Reset Bootstrap column widths so grid takes over */
+body.eagle-agora #all-services > .panel {
+  width: 100% !important;
+  float: none !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* --- Global lightweight modernization (scoped) --- */
+body.eagle-agora input.form-control,
+body.eagle-agora .btn,
+body.eagle-agora button:not(.eagle-sidebar__link):not(.eagle-sidebar__theme-btn) {
+  border-radius: var(--eagle-radius-sm) !important;
+  font-family: var(--eagle-font) !important;
+}
+
+body.eagle-agora .btn-link {
+  text-decoration: none;
+}
+
+body.eagle-agora .dropdown-menu {
+  border-radius: var(--eagle-radius-sm) !important;
+  box-shadow: var(--eagle-shadow) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+body.eagle-agora .dropdown-menu > li > a {
+  font-family: var(--eagle-font) !important;
+  font-size: var(--eagle-text-sm) !important;
+  padding: 8px 16px !important;
+}
+
+/* Modernize footer */
+body.eagle-agora .footer {
+  background: #fff !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.06) !important;
+  font-family: var(--eagle-font) !important;
+  color: var(--eagle-text-muted) !important;
+}
+
+body.eagle-agora .footer a {
+  color: var(--eagle-primary) !important;
+}
+
+/* Search bar modernization */
+body.eagle-agora .generic-search .form-control {
+  border-radius: var(--eagle-radius) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  padding: 8px 16px !important;
+  font-family: var(--eagle-font) !important;
+}
+
+/* Loader overlay modernization */
+body.eagle-agora .loader {
+  backdrop-filter: blur(2px);
+}
+
+/* ========================================
+   Phase 4 — EagleApps Dynamic Styling
+   (eaen.bc.edu — Student Registration,
+    Facet Search, and other Angular pages)
+   ======================================== */
+
+/* --- 4.0 EagleApps Global Page Modernization --- */
+body.eagle-eaen {
+  background: var(--eagle-bg) !important;
+  font-family: var(--eagle-font) !important;
+  color: var(--eagle-text);
+}
+
+/* EagleApps navbar modernization */
+body.eagle-eaen .navbar-default {
+  background: #fff !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  border-radius: 0 !important;
+  font-family: var(--eagle-font) !important;
+}
+
+body.eagle-eaen .navbar-default .navbar-nav > li > a {
+  font-family: var(--eagle-font) !important;
+  font-size: var(--eagle-text-sm) !important;
+  border-radius: var(--eagle-radius-sm);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+body.eagle-eaen .navbar-default .navbar-nav > li > a:hover {
+  background: var(--eagle-primary-light) !important;
+  color: var(--eagle-primary) !important;
+}
+
+body.eagle-eaen .navbar-default .navbar-nav > .active > a,
+body.eagle-eaen .navbar-default .navbar-nav > .active > a:hover {
+  background: var(--eagle-primary-light) !important;
+  color: var(--eagle-primary) !important;
+}
+
+/* EagleApps secondary header (app title bar) */
+body.eagle-eaen #appSecondaryHeader {
+  font-family: var(--eagle-font-display) !important;
+}
+
+/* --- 4.1 Modern Form Controls (eaen) --- */
+body.eagle-eaen .eagle-styled.btn,
+body.eagle-eaen .btn {
+  border-radius: var(--eagle-radius-sm) !important;
+  font-family: var(--eagle-font) !important;
+  font-size: var(--eagle-text-sm) !important;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+body.eagle-eaen .btn-primary {
+  background: var(--eagle-primary) !important;
+  border-color: var(--eagle-primary) !important;
+}
+
+body.eagle-eaen .btn-primary:hover {
+  background: var(--eagle-primary-hover) !important;
+  border-color: var(--eagle-primary-hover) !important;
+  box-shadow: 0 2px 8px rgba(138, 36, 50, 0.2);
+}
+
+body.eagle-eaen .btn-default {
+  border-radius: var(--eagle-radius-sm) !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+body.eagle-eaen .eagle-styled.form-control,
+body.eagle-eaen .form-control,
+body.eagle-eaen input[type="text"],
+body.eagle-eaen input[type="search"],
+body.eagle-eaen select {
+  border-radius: var(--eagle-radius-sm) !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  font-family: var(--eagle-font) !important;
+  font-size: var(--eagle-text-sm) !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+body.eagle-eaen .form-control:focus,
+body.eagle-eaen input:focus,
+body.eagle-eaen select:focus {
+  border-color: var(--eagle-primary) !important;
+  box-shadow: 0 0 0 3px var(--eagle-primary-light) !important;
+  outline: none !important;
+}
+
+/* --- 4.2 Modern Data Tables --- */
+
+/* Base table modernization — .eagle-table is added by eaen-tables.js observer */
+.eagle-table,
+body.eagle-eaen table.ng-table,
+body.eagle-eaen #tabularCCRegistrationRequestItemSelector {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  border-radius: var(--eagle-radius-sm) !important;
+  overflow: hidden;
+  background: var(--eagle-card) !important;
+  box-shadow: var(--eagle-shadow) !important;
+  font-family: var(--eagle-font) !important;
+  font-size: var(--eagle-text-sm) !important;
+  width: 100%;
+}
+
+/* Table wrapper — ensure rounded corners clip */
+body.eagle-eaen .table-responsive {
+  border: none !important;
+  border-radius: var(--eagle-radius-sm);
+  overflow: hidden;
+}
+
+/* Header row */
+.eagle-table thead,
+body.eagle-eaen table.ng-table thead,
+body.eagle-eaen #tabularCCRegistrationRequestItemSelector thead {
+  background: var(--eagle-bg) !important;
+}
+
+.eagle-table thead th,
+body.eagle-eaen table.ng-table thead th,
+body.eagle-eaen #tabularCCRegistrationRequestItemSelector thead th {
+  font-family: var(--eagle-font) !important;
+  font-size: var(--eagle-text-xs) !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  color: var(--eagle-text-muted) !important;
+  padding: 10px 12px !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  border-top: none !important;
+  white-space: nowrap;
+}
+
+/* Body rows */
+.eagle-table tbody tr,
+body.eagle-eaen table.ng-table tbody tr,
+body.eagle-eaen #tabularCCRegistrationRequestItemSelector tbody tr {
+  transition: background-color 0.12s ease;
+}
+
+.eagle-table tbody tr:hover,
+body.eagle-eaen table.ng-table tbody tr:hover,
+body.eagle-eaen #tabularCCRegistrationRequestItemSelector tbody tr:hover {
+  background: var(--eagle-primary-light) !important;
+}
+
+/* Striped rows — subtle alternation */
+.eagle-table.table-striped tbody tr:nth-child(even),
+body.eagle-eaen table.table-striped tbody tr:nth-child(even) {
+  background: rgba(0, 0, 0, 0.015) !important;
+}
+
+.eagle-table.table-striped tbody tr:nth-child(even):hover,
+body.eagle-eaen table.table-striped tbody tr:nth-child(even):hover {
+  background: var(--eagle-primary-light) !important;
+}
+
+/* Body cells */
+.eagle-table tbody td,
+body.eagle-eaen table.ng-table tbody td,
+body.eagle-eaen #tabularCCRegistrationRequestItemSelector tbody td {
+  padding: 10px 12px !important;
+  font-family: var(--eagle-font) !important;
+  font-size: var(--eagle-text-sm) !important;
+  color: var(--eagle-text) !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.04) !important;
+  vertical-align: middle !important;
+}
+
+/* Registration context viewer (Planned/Registered counts) */
+body.eagle-eaen #studentRegistrationContextViewerTablePlanned,
+body.eagle-eaen #studentRegistrationContextViewerTableRegistered {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  font-family: var(--eagle-font) !important;
+  font-size: var(--eagle-text-sm) !important;
+}
+
+body.eagle-eaen #studentRegistrationContextViewerTablePlanned td,
+body.eagle-eaen #studentRegistrationContextViewerTableRegistered td {
+  border: none !important;
+  padding: 4px 6px !important;
+  font-family: var(--eagle-font) !important;
+  font-size: var(--eagle-text-sm) !important;
+  color: var(--eagle-text) !important;
+}
+
+/* Student registration context bar */
+body.eagle-eaen .student-registration-context-viewer {
+  background: var(--eagle-card) !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  border-radius: var(--eagle-radius-sm) !important;
+  padding: 12px 16px !important;
+  margin-bottom: 16px !important;
+  box-shadow: var(--eagle-shadow) !important;
+}
+
+/* --- Facet Search Specific --- */
+
+/* Facet filter panels */
+body.eagle-eaen .facets .panel.panel-default,
+body.eagle-eaen .eagle-styled.panel {
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  border-radius: var(--eagle-radius-sm) !important;
+  box-shadow: none !important;
+  margin-bottom: 8px !important;
+  overflow: hidden;
+}
+
+body.eagle-eaen .facets .panel-heading,
+body.eagle-eaen .eagle-styled .panel-heading {
+  background: var(--eagle-bg) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+  font-family: var(--eagle-font) !important;
+  font-size: var(--eagle-text-sm) !important;
+  font-weight: 600 !important;
+  padding: 10px 14px !important;
+  color: var(--eagle-text) !important;
+  cursor: pointer;
+}
+
+body.eagle-eaen .facets .panel-body {
+  padding: 8px 12px !important;
+  font-family: var(--eagle-font) !important;
+}
+
+/* Active filter chips */
+body.eagle-eaen .fs-header__active-filter {
+  display: inline-flex !important;
+  align-items: center !important;
+  background: var(--eagle-primary-light) !important;
+  color: var(--eagle-primary) !important;
+  border-radius: 100px !important;
+  padding: 4px 12px !important;
+  font-family: var(--eagle-font) !important;
+  font-size: var(--eagle-text-xs) !important;
+  font-weight: 500 !important;
+  margin: 2px 4px !important;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+body.eagle-eaen .fs-header__active-filter:hover {
+  background: rgba(138, 36, 50, 0.15) !important;
+}
+
+/* Keyword search input */
+body.eagle-eaen .fs-keyword-input__label {
+  font-family: var(--eagle-font) !important;
+  font-size: var(--eagle-text-sm) !important;
+  font-weight: 500 !important;
+  color: var(--eagle-text) !important;
+}
+
+body.eagle-eaen .fs-keyword-input__button {
+  border-radius: var(--eagle-radius-sm) !important;
+}
+
+/* Tab navigation (registration plans) */
+body.eagle-eaen .nav-tabs {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.06) !important;
+}
+
+body.eagle-eaen .nav-tabs > li > a {
+  font-family: var(--eagle-font) !important;
+  font-size: var(--eagle-text-sm) !important;
+  font-weight: 500 !important;
+  border-radius: var(--eagle-radius-sm) var(--eagle-radius-sm) 0 0 !important;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  color: var(--eagle-text-muted) !important;
+}
+
+body.eagle-eaen .nav-tabs > li.active > a,
+body.eagle-eaen .nav-tabs > li.active > a:hover,
+body.eagle-eaen .nav-tabs > li.active > a:focus {
+  color: var(--eagle-primary) !important;
+  border-bottom: 2px solid var(--eagle-primary) !important;
+  font-weight: 600 !important;
+}
+
+body.eagle-eaen .nav-tabs > li > a:hover {
+  background: var(--eagle-primary-light) !important;
+  color: var(--eagle-primary) !important;
+}
+
+/* Popovers / tooltips */
+body.eagle-eaen .popover {
+  border-radius: var(--eagle-radius-sm) !important;
+  box-shadow: var(--eagle-shadow) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  font-family: var(--eagle-font) !important;
+}
+
+/* Checkbox / select-all alignment */
+body.eagle-eaen .eagle-table input[type="checkbox"] {
+  margin: 0 !important;
+  cursor: pointer;
+}
+
+/* Loading spinner — keep functional, modernize surrounding */
+body.eagle-eaen .sk-circle {
+  margin: 40px auto !important;
+}
+
+/* Course syllabi / external links */
+body.eagle-eaen .navbar-text a {
+  font-family: var(--eagle-font) !important;
+  font-size: var(--eagle-text-sm) !important;
+  color: var(--eagle-primary) !important;
+}
+
+body.eagle-eaen .navbar-text a:hover {
+  color: var(--eagle-primary-hover) !important;
+  text-decoration: underline !important;
+}
+
+/* --- Dropdown / Select modernization --- */
+body.eagle-eaen .dropdown-menu {
+  border-radius: var(--eagle-radius-sm) !important;
+  box-shadow: var(--eagle-shadow) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  font-family: var(--eagle-font) !important;
+}
+
+body.eagle-eaen .dropdown-menu > li > a {
+  font-family: var(--eagle-font) !important;
+  font-size: var(--eagle-text-sm) !important;
+  padding: 8px 16px !important;
+  transition: background-color 0.12s ease;
+}
+
+body.eagle-eaen .dropdown-menu > li > a:hover {
+  background: var(--eagle-primary-light) !important;
+  color: var(--eagle-primary) !important;
+}
+
+/* --- Wells and Alerts --- */
+body.eagle-eaen .well,
+body.eagle-eaen .eagle-styled.well {
+  border-radius: var(--eagle-radius-sm) !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  background: var(--eagle-card) !important;
+  box-shadow: none !important;
+  font-family: var(--eagle-font) !important;
+}
+
+body.eagle-eaen .alert {
+  border-radius: var(--eagle-radius-sm) !important;
+  font-family: var(--eagle-font) !important;
+}
+
+/* --- EagleApps Footer --- */
+body.eagle-eaen footer,
+body.eagle-eaen .footer {
+  font-family: var(--eagle-font) !important;
+}
+
+/* ========================================
+   Phase 5 — Login Page Modernization
+   (login.bc.edu)
+   ======================================== */
+
+/* --- 5.0 Page-level reset --- */
+body.eagle-login {
+  background: var(--eagle-bg) !important;
+  font-family: var(--eagle-font) !important;
+  color: var(--eagle-text);
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: 100vh;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Push body content right for the sidebar */
+body.eagle-login.eagle-has-sidebar {
+  padding-left: var(--eagle-sidebar-width-collapsed) !important;
+}
+
+/* --- Hide/replace old decorative elements --- */
+body.eagle-login .global-header {
+  display: none !important;
+}
+
+body.eagle-login .top {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+body.eagle-login .bg-image {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--eagle-bg) 0%, #e8e4e0 50%, rgba(138, 36, 50, 0.06) 100%) !important;
+  z-index: -1;
+}
+
+/* --- Login card container --- */
+body.eagle-login section.login {
+  background: #fff !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  border-radius: var(--eagle-radius-lg) !important;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.06) !important;
+  max-width: 420px !important;
+  width: 100% !important;
+  padding: 40px 36px 32px !important;
+  margin: 0 auto !important;
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Logo area --- */
+body.eagle-login #mainLogo {
+  width: 100% !important;
+  height: auto !important;
+  padding: 0 0 20px !important;
+  text-align: center;
+  background: none !important;
+}
+
+body.eagle-login #mainLogo img {
+  max-width: 200px !important;
+  height: auto !important;
+  margin: 0 auto;
+  display: block;
+}
+
+body.eagle-login #mainLogo a {
+  display: inline-block;
+}
+
+/* --- Heading --- */
+body.eagle-login h1 {
+  font-family: var(--eagle-font-display) !important;
+  font-size: var(--eagle-text-xl) !important;
+  font-weight: 700 !important;
+  color: var(--eagle-text) !important;
+  text-align: center !important;
+  margin: 0 0 24px !important;
+  letter-spacing: -0.02em;
+}
+
+/* --- Labels --- */
+body.eagle-login label {
+  font-family: var(--eagle-font) !important;
+  font-size: var(--eagle-text-sm) !important;
+  font-weight: 500 !important;
+  color: var(--eagle-text) !important;
+  display: block !important;
+  margin-bottom: 6px !important;
+}
+
+/* --- Inputs --- */
+body.eagle-login #username,
+body.eagle-login #password {
+  display: block !important;
+  width: 100% !important;
+  height: 48px !important;
+  padding: 0 16px !important;
+  font-family: var(--eagle-font) !important;
+  font-size: var(--eagle-text-base) !important;
+  color: var(--eagle-text) !important;
+  background: #fff !important;
+  border: 1.5px solid rgba(0, 0, 0, 0.15) !important;
+  border-radius: var(--eagle-radius-sm) !important;
+  outline: none !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: 16px !important;
+  box-sizing: border-box !important;
+  -webkit-appearance: none !important;
+}
+
+body.eagle-login #username:focus,
+body.eagle-login #password:focus {
+  border-color: var(--eagle-primary) !important;
+  box-shadow: 0 0 0 3px var(--eagle-primary-light) !important;
+}
+
+body.eagle-login #username::placeholder,
+body.eagle-login #password::placeholder {
+  color: var(--eagle-text-muted) !important;
+  font-weight: 400;
+}
+
+/* --- Forgot password link --- */
+body.eagle-login .msg {
+  text-align: right !important;
+  margin: -8px 0 20px !important;
+}
+
+body.eagle-login .msg a {
+  font-family: var(--eagle-font) !important;
+  font-size: var(--eagle-text-sm) !important;
+  color: var(--eagle-primary) !important;
+  text-decoration: none !important;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+body.eagle-login .msg a:hover {
+  color: var(--eagle-primary-hover) !important;
+  text-decoration: underline !important;
+}
+
+/* --- Sign in button --- */
+body.eagle-login .btn.custom {
+  display: block !important;
+  width: 100% !important;
+  height: 48px !important;
+  padding: 0 !important;
+  font-family: var(--eagle-font) !important;
+  font-size: var(--eagle-text-base) !important;
+  font-weight: 600 !important;
+  color: #fff !important;
+  background: var(--eagle-primary) !important;
+  border: none !important;
+  border-radius: var(--eagle-radius-sm) !important;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+  letter-spacing: 0.01em;
+  -webkit-appearance: none !important;
+}
+
+body.eagle-login .btn.custom:hover {
+  background: var(--eagle-primary-hover) !important;
+  box-shadow: 0 4px 12px rgba(138, 36, 50, 0.25) !important;
+}
+
+body.eagle-login .btn.custom:active {
+  transform: scale(0.98);
+}
+
+/* --- Alert / notice box --- */
+body.eagle-login .alert.alert-info {
+  background: #FFF8E1 !important;
+  border: 1px solid rgba(188, 155, 106, 0.3) !important;
+  border-radius: var(--eagle-radius-sm) !important;
+  color: var(--eagle-text) !important;
+  padding: 12px 16px !important;
+  margin-top: 20px !important;
+  font-family: var(--eagle-font) !important;
+  font-size: var(--eagle-text-sm) !important;
+  line-height: 1.5;
+  display: block !important;
+  box-shadow: none !important;
+}
+
+body.eagle-login .alert.alert-info strong {
+  color: var(--eagle-primary) !important;
+}
+
+body.eagle-login .alert.alert-info p {
+  margin: 0 0 6px !important;
+}
+
+/* --- Help / notice text --- */
+body.eagle-login .note {
+  font-family: var(--eagle-font) !important;
+  font-size: 12px !important;
+  color: var(--eagle-text-muted) !important;
+  line-height: 1.5;
+  margin-top: 12px !important;
+}
+
+body.eagle-login .note.notice {
+  background: transparent !important;
+  padding: 0 !important;
+  margin-top: 16px !important;
+  font-size: var(--eagle-text-sm) !important;
+  color: var(--eagle-text) !important;
+}
+
+body.eagle-login .note a {
+  color: var(--eagle-primary) !important;
+  text-decoration: none;
+}
+
+body.eagle-login .note a:hover {
+  text-decoration: underline !important;
+}
+
+/* --- Emergency banner (keep functional, improve look) --- */
+body.eagle-login #emergency {
+  position: fixed !important;
+  top: 0;
+  left: var(--eagle-sidebar-width-collapsed);
+  right: 0;
+  z-index: 9999;
+}
+
+body.eagle-login #emergency #text {
+  font-family: var(--eagle-font) !important;
+  font-size: var(--eagle-text-sm) !important;
+}
+
+/* ========================================
+   Phase 5 — Visual Polish
+   (Fixes for square edges, pop, depth)
+   ======================================== */
+
+/* --- Enhanced shadow token for more pop --- */
+:root {
+  --eagle-shadow-md: 0 4px 24px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0, 0, 0, 0.04);
+  --eagle-shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+/* --- Agora: Fix page-description header (the maroon bar with square edges) --- */
+body.eagle-agora .page-description {
+  background: var(--eagle-primary) !important;
+  color: #fff !important;
+  padding: 28px 24px 20px !important;
+  margin: 0 -15px 24px !important;
+  border-radius: 0 0 var(--eagle-radius-lg) var(--eagle-radius-lg) !important;
+  box-shadow: 0 4px 16px rgba(138, 36, 50, 0.12);
+}
+
+body.eagle-agora .page-description h1 {
+  color: #fff !important;
+  margin-bottom: 2px !important;
+}
+
+body.eagle-agora .page-description p {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+body.eagle-agora .page-description p a {
+  color: var(--eagle-accent) !important;
+}
+
+/* --- Agora: Enhanced card shadows for more pop --- */
+body.eagle-agora #all-services .panel.panel-default {
+  box-shadow: var(--eagle-shadow-md) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+body.eagle-agora #all-services .panel.panel-default:hover {
+  box-shadow: var(--eagle-shadow-lg) !important;
+}
+
+/* --- Agora: Panel heading — add subtle bg tint so header "pops" from body --- */
+body.eagle-agora #all-services .panel-heading {
+  background: var(--eagle-bg) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  color: var(--eagle-primary) !important;
+  font-size: 15px !important;
+}
+
+/* --- Agora: Better grid gap and section padding --- */
+body.eagle-agora #all-services {
+  gap: 24px !important;
+  padding: 0 0 40px !important;
+}
+
+body.eagle-agora .resource-overview {
+  padding-top: 8px !important;
+}
+
+/* --- Agora: Fix banner top bar (the "BOSTON COLLEGE" + dropdown) square edges --- */
+body.eagle-agora .banner.banner-inverse.pull-up {
+  border-radius: 0 !important;
+  margin: 0 !important;
+}
+
+/* --- Agora: header row fix for square edges --- */
+body.eagle-agora .container-fluid.header {
+  border-radius: 0 !important;
+}
+
+/* --- Agora: Stronger hover state on service links for pop --- */
+body.eagle-agora #all-services .panel-body li:not(.sub-category):not(.disabled):hover,
+body.eagle-agora #all-services .panel-body li.bkgrd-on {
+  background: rgba(138, 36, 50, 0.06) !important;
+}
+
+body.eagle-agora #all-services .panel-body li a:hover {
+  color: var(--eagle-primary) !important;
+}
+
+/* --- Agora: Footer rounded top if desired --- */
+body.eagle-agora .footer {
+  border-radius: var(--eagle-radius-lg) var(--eagle-radius-lg) 0 0 !important;
+  margin-top: 8px;
+}
+
+/* --- Sidebar: Strengthen active gold accent for more "pop" --- */
+.eagle-sidebar__link--active {
+  background: rgba(188, 155, 106, 0.18) !important;
+  color: var(--eagle-accent) !important;
+  border-left: 3px solid var(--eagle-accent) !important;
+  font-weight: 600 !important;
+}
+
+.eagle-sidebar__link--active .eagle-sidebar__icon {
+  color: var(--eagle-accent) !important;
+}
+
+.eagle-sidebar__link--active:hover {
+  background: rgba(188, 155, 106, 0.24) !important;
+  color: var(--eagle-accent-hover) !important;
+}
+
+/* --- Global: Smooth all remaining Bootstrap elements with rounded corners --- */
+body.eagle-agora .form-group .input-group,
+body.eagle-agora .input-group-addon {
+  border-radius: var(--eagle-radius-sm) !important;
+  overflow: hidden;
+}
+
+body.eagle-agora .input-group .form-control:first-child {
+  border-top-left-radius: var(--eagle-radius-sm) !important;
+  border-bottom-left-radius: var(--eagle-radius-sm) !important;
+}
+
+body.eagle-agora .input-group .input-group-addon:last-child {
+  border-top-right-radius: var(--eagle-radius-sm) !important;
+  border-bottom-right-radius: var(--eagle-radius-sm) !important;
+}
+
+/* --- Global: Smooth dropdown toggle (user name button area) --- */
+body.eagle-agora .dropdown .btn,
+body.eagle-agora .dropdown-toggle {
+  border-radius: var(--eagle-radius-sm) !important;
+}
+
+/* --- Agora: Ensure no square edges leak on main content area --- */
+body.eagle-agora main#content {
+  border-radius: 0 !important;
+  overflow: visible;
+}
+
+/* --- EagleApps: Enhanced panel/card visual polish --- */
+body.eagle-eaen .panel.panel-default {
+  border-radius: var(--eagle-radius-sm) !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+body.eagle-eaen .panel-heading {
+  border-radius: 0 !important;
+}
